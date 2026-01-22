@@ -13,7 +13,7 @@ export default function MainContent() {
       </div>
 
       {/* Stats cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-white shadow rounded p-4">
           <h3 className="text-gray-500 text-sm">Total Projects</h3>
           <p className="text-2xl font-bold text-gray-800">8</p>
@@ -21,6 +21,10 @@ export default function MainContent() {
         <div className="bg-white shadow rounded p-4">
           <h3 className="text-gray-500 text-sm">Pending Tasks</h3>
           <p className="text-2xl font-bold text-gray-800">12</p>
+        </div>
+        <div className="bg-white shadow rounded p-4">
+          <h3 className="text-gray-500 text-sm">On Hold Tasks</h3>
+          <p className="text-2xl font-bold text-gray-800">10</p>
         </div>
         <div className="bg-white shadow rounded p-4">
           <h3 className="text-gray-500 text-sm">Completed Tasks</h3>
@@ -58,6 +62,12 @@ export default function MainContent() {
               <td className="py-2 px-3">Backend API</td>
               <td className="py-2 px-3 text-red-600">Pending</td>
               <td className="py-2 px-3">Jan 28, 2026</td>
+            </tr>
+               <tr className="hover:bg-gray-100">
+              <td className="py-2 px-3">New Feature Implementation</td>
+              <td className="py-2 px-3">Frontend API</td>
+              <td className="py-2 px-3 text-blue-600">Blocked</td>
+              <td className="py-2 px-3">Jan 22, 2026</td>
             </tr>
           </tbody>
         </table>
