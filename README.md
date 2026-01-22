@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TaskFlow
 
-## Getting Started
+TaskFlow is a modern personal dashboard app built with **Next.js (App Router)**, **React**, **TypeScript**, **Tailwind CSS**, and **PostgreSQL + Prisma**.  
+It allows you to manage projects and tasks with a clean, interactive UI.
 
-First, run the development server:
+---
+
+## Tech Stack
+
+- **Next.js (App Router) — built on React**
+- **React** (for building UI components)
+- **TypeScript**
+- **Tailwind CSS**
+- **Prisma ORM**
+- **PostgreSQL**
+- **Git + GitHub**
+
+---
+
+## ⚡ Features
+
+- Collapsible sidebar built with **React components**
+- Header with dropdown actions
+- Dashboard page with stats cards
+- Projects & Tasks pages with tables
+- Create Project & Create Task modals (UI + backend ready)
+- Empty state UI for tables and dashboards
+- Routing and dynamic linking between projects and tasks
+- Initial mock data (temporary), fully replaced by PostgreSQL + Prisma
+
+---
+
+## Getting Started (Development)
+
+Follow these steps to set up the project locally.
+
+1. **Clone the repo**
 
 ```bash
+git clone <your-repo-url>
+cd taskflow
+
+Install dependencies
+
+npm install
+# or
+yarn install
+# or
+pnpm install
+
+Setup environment variables
+
+Create a .env file in the project root:
+
+# PostgreSQL database connection
+DATABASE_URL="postgresql://<username>:<password>@localhost:5432/taskflow?schema=public"
+
+Important: Do not commit .env to Git. Each developer should create their own .env file.
+
+Run Prisma migrations and seed data
+
+npx prisma migrate dev --name init
+npx prisma db seed
+
+Generate Prisma client (if needed)
+
+npx prisma generate
+
+Run development server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# or yarn dev / pnpm dev
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
+in your browser to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Project Structure
 
-## Learn More
+app/            → Next.js pages and layouts
+components/     → Reusable React UI components (Modal, Buttons, Tables, EmptyState)
+lib/prisma.ts   → Prisma client singleton
+prisma/         → Database models and seed data
+mockData.ts     → Temporary mock data (to be removed)
+.env            → Environment variables (not committed)
 
-To learn more about Next.js, take a look at the following resources:
+Database
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+PostgreSQL is used for storing projects and tasks.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Prisma is used as ORM for type-safe queries.
 
-## Deploy on Vercel
+Seed data includes a sample project and tasks for development.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Running Prisma Studio
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To visually inspect your database:
+
+npx prisma studio
+
+You can view Projects, Tasks, and linked data.
