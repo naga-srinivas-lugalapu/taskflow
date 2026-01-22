@@ -1,7 +1,22 @@
-import { projects } from "@/app/lib/mockData";
+import { Project, Task } from "@/app/lib/mockData";
 import ProjectRow from "./ProjectRow";
+import EmptyState from "../common/EmptyState";
 
-export default function ProjectsTable() {
+type ProjectsTableProps = {
+  projects: Project[];
+  tasks: Task[];
+};
+
+export default function ProjectsTable({ projects, tasks }: ProjectsTableProps) {
+  if (projects.length === 0) {
+    return (
+      <EmptyState
+        title="No projects yet"
+        description="Create your first project to start organizing your work."
+      />
+    );
+  }
+
   return (
     <div className="bg-white border rounded-2xl shadow-sm overflow-hidden">
       <table className="w-full text-sm">
@@ -16,7 +31,11 @@ export default function ProjectsTable() {
 
         <tbody>
           {projects.map((project) => (
-            <ProjectRow key={project.id} project={project} />
+            <ProjectRow
+              key={project.id}
+              project={project}
+              tasksCount={tasks.filter((t) => t.project === project.name).length}
+            />
           ))}
         </tbody>
       </table>
