@@ -9,12 +9,18 @@ export default async function ProjectsPage() {
     orderBy: { createdAt: "desc" },
   });
 
+  // Create hydration-safe view model
+  const safeProjects = projects.map((p) => ({
+    id: p.id,
+    name: p.name,
+    tasks: p.tasks,
+    tasksCount: p.tasks.length,
+    createdAtFormatted: p.createdAt.toISOString().split("T")[0], // YYYY-MM-DD
+  }));
+
   return (
-    <PageContainer
-      title="Projects"
-      rightSlot={<CreateProjectButton />}
-    >
-      <ProjectsTable projects={projects} />
+    <PageContainer title="Projects" rightSlot={<CreateProjectButton />}>
+      <ProjectsTable projects={safeProjects} />
     </PageContainer>
   );
 }

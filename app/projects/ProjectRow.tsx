@@ -7,7 +7,7 @@ type ProjectRowProps = {
   project: {
     id: string;
     name: string;
-    createdAt: string;
+    createdAtFormatted: string;
     tasks: { id: string }[];
   };
   tasksCount: number;
@@ -16,8 +16,6 @@ type ProjectRowProps = {
 export default function ProjectRow({ project, tasksCount }: ProjectRowProps) {
   const [isPending, startTransition] = useTransition();
 
-  const formattedDate = new Date(project.createdAt).toLocaleDateString();
-   
   function handleDelete() {
     const ok = confirm(`Delete "${project.name}"?`);
     if (!ok) return;
@@ -31,7 +29,7 @@ export default function ProjectRow({ project, tasksCount }: ProjectRowProps) {
     <tr className="border-t">
       <td className="px-4 py-3">{project.name}</td>
       <td className="px-4 py-3">{tasksCount}</td>
-      <td className="px-4 py-3" suppressHydrationWarning>{formattedDate}</td>
+      <td className="px-4 py-3">{project.createdAtFormatted}</td>
       <td className="px-4 py-3">
         <button
           onClick={handleDelete}
@@ -41,7 +39,6 @@ export default function ProjectRow({ project, tasksCount }: ProjectRowProps) {
           {isPending ? "Deleting..." : "Delete"}
         </button>
       </td>
-      
     </tr>
   );
 }
