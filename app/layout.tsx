@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
+import { ToastProvider } from "@/components/common/ToastProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,14 +31,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex h-screen">
-          <Sidebar />
+        <ToastProvider>
+          <div className="flex h-screen">
+            <Sidebar />
 
-          <div className="flex-1 flex flex-col">
-            <Header />
-            {children}
+            <div className="flex-1 flex flex-col">
+              <Header />
+              {children}
+            </div>
           </div>
-        </div>
+        </ToastProvider>
       </body>
     </html>
   );
